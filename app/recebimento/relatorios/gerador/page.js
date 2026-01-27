@@ -8,8 +8,8 @@ export default function GeradorRelatorios() {
   const [historico, setHistorico] = useState([]);
   
   const [filtros, setFiltros] = useState({
-    mesINSS: '',
-    anoINSS: '2025',
+    campoPesquisa: 'DATA_INSS',
+    periodoTipo: '',
     dataInicio: '',
     dataFim: '',
     responsavel: '',
@@ -17,6 +17,74 @@ export default function GeradorRelatorios() {
     cliente: '',
     status: ['RECEBIDO', 'A_RECEBER', 'VENCIDO']
   });
+
+  const camposPesquisa = [
+    { key: 'DATA_INSS', label: 'Data INSS' },
+    { key: 'DATA_PAGAMENTO', label: 'Data de Pagamento' },
+    { key: 'DATA_CONCESSAO', label: 'Data de Concessão' },
+    { key: 'DATA_AGENDAMENTO', label: 'Data de Agendamento' },
+    { key: 'DATA_REAGENDAMENTO', label: 'Data de Reagendamento' },
+  ];
+
+  const opcoesPeriodo = [
+    { key: 'hoje', label: 'Hoje' },
+    { key: 'esta_semana', label: 'Esta Semana' },
+    { key: 'semana_passada', label: 'Semana Passada' },
+    { key: 'este_mes', label: 'Este Mês' },
+    { key: 'mes_anterior', label: 'Mês Anterior' },
+    { key: 'personalizado', label: 'Intervalo Personalizado' },
+  ];
+
+  const calcularPeriodo = (tipo) => {
+    const hoje = new Date();
+    let inicio, fim;
+
+    switch (tipo) {
+      case 'hoje':
+        inicio = fim = hoje.toISOString().split('T')[0];
+        break;
+      case 'esta_semana': {
+        const seg = new Date(hoje);
+        seg.setDate(hoje.getDate() - ((hoje.getDay() + 6) % 7));
+        const dom = new Date(seg);
+        dom.setDate(seg.getDate() + 6);
+        inicio = seg.toISOString().split('T')[0];
+        fim = dom.toISOString().split('T')[0];
+        break;
+      }
+      case 'semana_passada': {
+        const seg = new Date(hoje);
+        seg.setDate(hoje.getDate() - ((hoje.getDay() + 6) % 7) - 7);
+        const dom = new Date(seg);
+        dom.setDate(seg.getDate() + 6);
+        inicio = seg.toISOString().split('T')[0];
+        fim = dom.toISOString().split('T')[0];
+        break;
+      }
+      case 'este_mes': {
+        inicio = new Date(hoje.getFullYear(), hoje.getMonth(), 1).toISOString().split('T')[0];
+        fim = new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0).toISOString().split('T')[0];
+        break;
+      }
+      case 'mes_anterior': {
+        inicio = new Date(hoje.getFullYear(), hoje.getMonth() - 1, 1).toISOString().split('T')[0];
+        fim = new Date(hoje.getFullYear(), hoje.getMonth(), 0).toISOString().split('T')[0];
+        break;
+      }
+      default:
+        return { inicio: '', fim: '' };
+    }
+    return { inicio, fim };
+  };
+
+  const selecionarPeriodo = (tipo) => {
+    if (tipo === 'personalizado') {
+      setFiltros(prev => ({ ...prev, periodoTipo: tipo, dataInicio: '', dataFim: '' }));
+    } else {
+      const { inicio, fim } = calcularPeriodo(tipo);
+      setFiltros(prev => ({ ...prev, periodoTipo: tipo, dataInicio: inicio, dataFim: fim }));
+    }
+  };
 
   const CONFIG = {
     bitrixWebhook: 'https://startprev.bitrix24.com.br/rest/110798/u24r6sark33p1q3i',
@@ -60,45 +128,33 @@ export default function GeradorRelatorios() {
 
   const presets = {
     mesAtual: () => {
-      const hoje = new Date();
+      selecionarPeriodo('este_mes');
       setFiltros(prev => ({
         ...prev,
-        mesINSS: String(hoje.getMonth() + 1).padStart(2, '0'),
-        anoINSS: String(hoje.getFullYear()),
-        dataInicio: '', dataFim: '',
+        campoPesquisa: 'DATA_INSS',
         status: ['RECEBIDO', 'A_RECEBER', 'VENCIDO']
       }));
     },
     mesAnterior: () => {
-      const d = new Date();
-      d.setMonth(d.getMonth() - 1);
+      selecionarPeriodo('mes_anterior');
       setFiltros(prev => ({
         ...prev,
-        mesINSS: String(d.getMonth() + 1).padStart(2, '0'),
-        anoINSS: String(d.getFullYear()),
-        dataInicio: '', dataFim: '',
+        campoPesquisa: 'DATA_INSS',
         status: ['RECEBIDO', 'A_RECEBER', 'VENCIDO']
       }));
     },
     semanaAtual: () => {
-      const hoje = new Date();
-      const inicio = new Date(hoje);
-      inicio.setDate(hoje.getDate() - hoje.getDay() + 1);
-      const fim = new Date(inicio);
-      fim.setDate(inicio.getDate() + 6);
-      
+      selecionarPeriodo('esta_semana');
       setFiltros(prev => ({
         ...prev,
-        mesINSS: '', anoINSS: '',
-        dataInicio: inicio.toISOString().split('T')[0],
-        dataFim: fim.toISOString().split('T')[0],
+        campoPesquisa: 'DATA_INSS',
         status: ['RECEBIDO', 'A_RECEBER', 'VENCIDO']
       }));
     },
     inadimplentes: () => {
       setFiltros(prev => ({
         ...prev,
-        mesINSS: '', anoINSS: '',
+        periodoTipo: '',
         dataInicio: '', dataFim: '',
         tipoRelatorio: 'inadimplentes',
         status: ['VENCIDO']
@@ -109,8 +165,13 @@ export default function GeradorRelatorios() {
   const gerarRelatorio = async (e) => {
     e.preventDefault();
     
-    if (!filtros.mesINSS && !filtros.dataInicio && !filtros.responsavel && !filtros.cliente) {
-      alert('Selecione pelo menos um filtro!');
+    if (!filtros.periodoTipo && !filtros.responsavel && !filtros.cliente) {
+      alert('Selecione pelo menos um filtro (período, responsável ou cliente)!');
+      return;
+    }
+
+    if (filtros.periodoTipo === 'personalizado' && (!filtros.dataInicio || !filtros.dataFim)) {
+      alert('Para intervalo personalizado, informe a data de início e fim!');
       return;
     }
 
@@ -121,8 +182,8 @@ export default function GeradorRelatorios() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          mes_inss: filtros.mesINSS,
-          ano_inss: filtros.anoINSS,
+          campo_pesquisa: filtros.campoPesquisa,
+          periodo_tipo: filtros.periodoTipo,
           data_inicio: filtros.dataInicio,
           data_fim: filtros.dataFim,
           responsavel_id: filtros.responsavel,
@@ -135,9 +196,13 @@ export default function GeradorRelatorios() {
       const result = await response.json();
 
       if (result.success && result.url) {
+        const campoLabel = camposPesquisa.find(c => c.key === filtros.campoPesquisa)?.label || filtros.campoPesquisa;
+        const periodoLabel = filtros.periodoTipo
+          ? opcoesPeriodo.find(p => p.key === filtros.periodoTipo)?.label || filtros.periodoTipo
+          : 'Sem período';
         const novoItem = {
           tipo: filtros.tipoRelatorio,
-          periodo: filtros.mesINSS ? `${filtros.mesINSS}/${filtros.anoINSS}` : 'Personalizado',
+          periodo: `${campoLabel} - ${periodoLabel}`,
           url: result.url,
           data: new Date().toLocaleString('pt-BR')
         };
@@ -209,43 +274,76 @@ export default function GeradorRelatorios() {
               ))}
             </div>
 
-            {/* Campos */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
-              <div>
-                <label className="block text-sm font-semibold text-cinza-escuro mb-1">📆 Competência INSS (Mês)</label>
-                <select 
-                  value={filtros.mesINSS} 
-                  onChange={e => setFiltros(prev => ({ ...prev, mesINSS: e.target.value }))}
-                  className="w-full p-3 border border-cinza-borda rounded-lg focus:outline-none focus:border-azul-escuro"
-                >
-                  <option value="">Todos os meses</option>
-                  {['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'].map((mes, idx) => (
-                    <option key={idx} value={String(idx + 1).padStart(2, '0')}>{mes}</option>
-                  ))}
-                </select>
-              </div>
+            {/* Campo de Pesquisa + Período */}
+            <div className="mb-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label className="block text-sm font-semibold text-cinza-escuro mb-1">🔍 Pesquisar por</label>
+                  <select
+                    value={filtros.campoPesquisa}
+                    onChange={e => setFiltros(prev => ({ ...prev, campoPesquisa: e.target.value }))}
+                    className="w-full p-3 border border-cinza-borda rounded-lg focus:outline-none focus:border-azul-escuro bg-white"
+                  >
+                    {camposPesquisa.map(campo => (
+                      <option key={campo.key} value={campo.key}>{campo.label}</option>
+                    ))}
+                  </select>
+                </div>
 
-              <div>
-                <label className="block text-sm font-semibold text-cinza-escuro mb-1">📅 Ano INSS</label>
-                <select 
-                  value={filtros.anoINSS}
-                  onChange={e => setFiltros(prev => ({ ...prev, anoINSS: e.target.value }))}
-                  className="w-full p-3 border border-cinza-borda rounded-lg focus:outline-none focus:border-azul-escuro"
-                >
-                  <option value="">Todos</option>
-                  {['2026','2025','2024','2023'].map(ano => <option key={ano} value={ano}>{ano}</option>)}
-                </select>
-              </div>
-
-              <div className="lg:col-span-2">
-                <label className="block text-sm font-semibold text-cinza-escuro mb-1">📅 Período de Vencimento</label>
-                <div className="flex items-center gap-3">
-                  <input type="date" value={filtros.dataInicio} onChange={e => setFiltros(prev => ({ ...prev, dataInicio: e.target.value }))} className="flex-1 p-3 border border-cinza-borda rounded-lg focus:outline-none focus:border-azul-escuro" />
-                  <span className="text-cinza-claro text-sm">até</span>
-                  <input type="date" value={filtros.dataFim} onChange={e => setFiltros(prev => ({ ...prev, dataFim: e.target.value }))} className="flex-1 p-3 border border-cinza-borda rounded-lg focus:outline-none focus:border-azul-escuro" />
+                <div>
+                  <label className="block text-sm font-semibold text-cinza-escuro mb-1">📅 Período</label>
+                  <select
+                    value={filtros.periodoTipo}
+                    onChange={e => selecionarPeriodo(e.target.value)}
+                    className="w-full p-3 border border-cinza-borda rounded-lg focus:outline-none focus:border-azul-escuro bg-white"
+                  >
+                    <option value="">Selecione o período</option>
+                    {opcoesPeriodo.map(op => (
+                      <option key={op.key} value={op.key}>{op.label}</option>
+                    ))}
+                  </select>
                 </div>
               </div>
 
+              {/* Datas personalizadas - aparece só quando "Intervalo Personalizado" é selecionado */}
+              {filtros.periodoTipo === 'personalizado' && (
+                <div className="bg-cinza-bg rounded-lg p-4 border border-cinza-borda">
+                  <label className="block text-sm font-semibold text-cinza-escuro mb-2">📆 Intervalo Personalizado</label>
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1">
+                      <label className="block text-xs text-cinza-medio mb-1">Data Início</label>
+                      <input
+                        type="date"
+                        value={filtros.dataInicio}
+                        onChange={e => setFiltros(prev => ({ ...prev, dataInicio: e.target.value }))}
+                        className="w-full p-3 border border-cinza-borda rounded-lg focus:outline-none focus:border-azul-escuro bg-white"
+                      />
+                    </div>
+                    <span className="text-cinza-claro text-sm mt-5">até</span>
+                    <div className="flex-1">
+                      <label className="block text-xs text-cinza-medio mb-1">Data Fim</label>
+                      <input
+                        type="date"
+                        value={filtros.dataFim}
+                        onChange={e => setFiltros(prev => ({ ...prev, dataFim: e.target.value }))}
+                        className="w-full p-3 border border-cinza-borda rounded-lg focus:outline-none focus:border-azul-escuro bg-white"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Resumo do período selecionado (quando não é personalizado) */}
+              {filtros.periodoTipo && filtros.periodoTipo !== 'personalizado' && filtros.dataInicio && (
+                <div className="mt-2 px-3 py-2 bg-blue-50 border border-blue-200 rounded-lg text-sm text-azul-escuro">
+                  <span className="font-medium">{camposPesquisa.find(c => c.key === filtros.campoPesquisa)?.label}:</span>{' '}
+                  {new Date(filtros.dataInicio + 'T12:00:00').toLocaleDateString('pt-BR')} até {new Date(filtros.dataFim + 'T12:00:00').toLocaleDateString('pt-BR')}
+                </div>
+              )}
+            </div>
+
+            {/* Outros Filtros */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
               <div>
                 <label className="block text-sm font-semibold text-cinza-escuro mb-1">👤 Responsável</label>
                 <select value={filtros.responsavel} onChange={e => setFiltros(prev => ({ ...prev, responsavel: e.target.value }))} className="w-full p-3 border border-cinza-borda rounded-lg focus:outline-none focus:border-azul-escuro">
