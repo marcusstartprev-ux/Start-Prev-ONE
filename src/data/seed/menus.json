@@ -1,0 +1,17 @@
+[
+  {
+    "key": "recebimento",
+    "name": "Recebimento",
+    "order": 1,
+    "children": [
+      {
+        "key": "recebimento.relatorios",
+        "name": "Relatórios",
+        "children": [
+          { "key": "recebimento.relatorios.inventario", "name": "Inventário", "path": "/recebimento/relatorios/inventario" },
+          { "key": "recebimento.relatorios.movimentacao", "name": "Movimentação", "path": "/recebimento/relatorios/movimentacao" }
+        ]
+      }
+    ]
+  }
+]
