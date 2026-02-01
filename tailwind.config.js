@@ -24,6 +24,21 @@ module.exports = {
           DEFAULT: '#f59e0b',
           'hover': '#d97706',
         },
+        // Design System Start (Dark Theme)
+        'st': {
+          'bg': '#121214',           // Fundo principal (quase preto)
+          'surface': '#202024',      // Cards (cinza elefante)
+          'surface-hover': '#29292e', // Hover dos cards
+          'border': 'rgba(255, 255, 255, 0.08)',
+          'border-highlight': 'rgba(255, 255, 255, 0.15)',
+          'text': '#f4f4f5',         // Texto principal (branco)
+          'muted': '#a1a1aa',        // Texto secundário
+          'accent': '#fbbf24',       // Amarelo Start (destaque)
+          'navy': '#1e3a8a',         // Azul marinho (identidade)
+          'success': '#10b981',      // Verde (sucesso/cliente)
+          'warning': '#f59e0b',      // Laranja (alerta)
+          'danger': '#ef4444',       // Vermelho (erro)
+        },
       },
     },
   },
