@@ -120,6 +120,18 @@ export default function Sidebar() {
                   <span className={`w-1.5 h-1.5 rounded-full ${isActive('/recebimento/relatorios/historico') ? 'bg-amarelo' : 'bg-cinza-medio'}`} />
                   Histórico
                 </Link>
+                <Link
+                  href="/recebimento/relatorios/faturamento"
+                  onClick={() => setMobileOpen(false)}
+                  className={`
+                    flex items-center gap-2 px-3 py-2 rounded-md text-[13px] font-medium transition-all
+                    ${isActive('/recebimento/relatorios/faturamento') ? 'text-amarelo bg-amarelo/10' : 'text-cinza-claro hover:bg-azul-hover hover:text-white'}
+                  `}
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full ${isActive('/recebimento/relatorios/faturamento') ? 'bg-amarelo' : 'bg-cinza-medio'}`} />
+                  Faturamento
+                  <span className="ml-auto bg-green-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded">NEW</span>
+                </Link>
               </div>
             )}
 
