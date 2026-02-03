@@ -1,0 +1,13 @@
+{
+  "parameters": {
+    "options": {}
+  },
+  "id": "57c6ef77-1fd6-419d-98fe-e2ab3b7bbc6d",
+  "name": "26. Responder SKIP",
+  "type": "n8n-nodes-base.set",
+  "typeVersion": 3.2,
+  "position": [
+    8640,
+    26320
+  ]
+}

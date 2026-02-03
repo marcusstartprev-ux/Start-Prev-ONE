@@ -1,0 +1,18 @@
+{
+  "parameters": {
+    "method": "POST",
+    "url": "https://startprev.bitrix24.com.br/rest/110798/2itn6qbjhoj6y42x/crm.item.list",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={\n  \"entityTypeId\": 31,\n  \"filter\": {\n    \"parentId2\": {{ $json.deal_id }}\n  },\n  \"order\": {\n    \"id\": \"DESC\"\n  },\n  \"start\": 0\n}",
+    "options": {}
+  },
+  "type": "n8n-nodes-base.httpRequest",
+  "typeVersion": 4.3,
+  "position": [
+    7072,
+    25840
+  ],
+  "id": "9b8c7c66-aaa3-45b3-bcd8-35d2752698a1",
+  "name": "8B. Buscar Última Invoice"
+}

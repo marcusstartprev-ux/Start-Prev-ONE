@@ -1,0 +1,13 @@
+{
+  "parameters": {
+    "options": {}
+  },
+  "id": "7f3c2e72-a0c1-4502-b98f-6ce4599a9a2f",
+  "name": "23. Responder ERRO",
+  "type": "n8n-nodes-base.set",
+  "typeVersion": 3.2,
+  "position": [
+    7968,
+    25568
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "parameters": {
+    "conditions": {
+      "options": {
+        "caseSensitive": true,
+        "leftValue": "",
+        "typeValidation": "loose",
+        "version": 1
+      },
+      "conditions": [
+        {
+          "id": "skip",
+          "leftValue": "={{ String($json.permitido_criar).trim().toLowerCase() }}\n",
+          "rightValue": "false",
+          "operator": {
+            "type": "string",
+            "operation": "equals"
+          }
+        }
+      ],
+      "combinator": "and"
+    },
+    "options": {
+      "looseTypeValidation": true
+    }
+  },
+  "id": "93741511-3efc-4a10-88d1-ca54c08b49c5",
+  "name": "13A. IF Pular",
+  "type": "n8n-nodes-base.if",
+  "typeVersion": 2,
+  "position": [
+    8416,
+    26128
+  ]
+}

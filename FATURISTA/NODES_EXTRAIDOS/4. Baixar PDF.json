@@ -1,0 +1,21 @@
+{
+  "parameters": {
+    "url": "={{ $json.result.DOWNLOAD_URL }}",
+    "options": {
+      "response": {
+        "response": {
+          "responseFormat": "file"
+        }
+      },
+      "timeout": 60000
+    }
+  },
+  "id": "98829dc2-f0d3-47e6-ae2f-17f3dc2b401d",
+  "name": "4. Baixar PDF",
+  "type": "n8n-nodes-base.httpRequest",
+  "typeVersion": 4.1,
+  "position": [
+    5280,
+    26480
+  ]
+}

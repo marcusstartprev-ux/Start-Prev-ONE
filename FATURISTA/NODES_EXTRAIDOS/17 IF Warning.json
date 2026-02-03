@@ -1,0 +1,33 @@
+{
+  "parameters": {
+    "conditions": {
+      "options": {
+        "caseSensitive": true,
+        "leftValue": "",
+        "typeValidation": "strict",
+        "version": 1
+      },
+      "conditions": [
+        {
+          "id": "warn",
+          "leftValue": "={{ ($json.alertas_lista || []).filter(a => a.tipo === 'WARNING').length > 0 }}",
+          "rightValue": true,
+          "operator": {
+            "type": "boolean",
+            "operation": "equals"
+          }
+        }
+      ],
+      "combinator": "and"
+    },
+    "options": {}
+  },
+  "id": "ab2ae438-529d-4fd3-a304-e03e4c3407f8",
+  "name": "17 IF Warning",
+  "type": "n8n-nodes-base.if",
+  "typeVersion": 2,
+  "position": [
+    9312,
+    25936
+  ]
+}

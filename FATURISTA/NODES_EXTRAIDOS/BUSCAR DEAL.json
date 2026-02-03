@@ -1,0 +1,23 @@
+{
+  "parameters": {
+    "url": "=https://startprev.bitrix24.com.br/rest/110798/2itn6qbjhoj6y42x/crm.deal.get",
+    "sendQuery": true,
+    "queryParameters": {
+      "parameters": [
+        {
+          "name": "id",
+          "value": "={{ $('1. Webhook').first().json.query.deal_id }}"
+        }
+      ]
+    },
+    "options": {}
+  },
+  "type": "n8n-nodes-base.httpRequest",
+  "typeVersion": 4.3,
+  "position": [
+    3936,
+    26720
+  ],
+  "id": "74ff4e74-b1e0-442a-882a-958133a4485e",
+  "name": "BUSCAR DEAL"
+}

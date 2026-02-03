@@ -1,0 +1,139 @@
+{
+  "parameters": {
+    "tableId": "execucoes",
+    "fieldsUi": {
+      "fieldValues": [
+        {
+          "fieldId": "execution_id",
+          "fieldValue": "={{ $json.execucao?.id || $json.deal_id + '_' + Date.now() }}"
+        },
+        {
+          "fieldId": "workflow_id",
+          "fieldValue": "={{$json.supabase_execucao.deal_id}}"
+        },
+        {
+          "fieldId": "cpf_formatado",
+          "fieldValue": "{{$json.supabase_execucao.cpf_formatado}}"
+        },
+        {
+          "fieldId": "cpf_formatado",
+          "fieldValue": "={{$json.supabase_execucao.cpf}}"
+        },
+        {
+          "fieldId": "nome_cliente",
+          "fieldValue": "={{ $json.nome_cliente }}"
+        },
+        {
+          "fieldId": "nb",
+          "fieldValue": "={{ $json.nb }}"
+        },
+        {
+          "fieldId": "nb_formatado",
+          "fieldValue": "={{ $json.resumo?.nb_formatado }}"
+        },
+        {
+          "fieldId": "mr",
+          "fieldValue": "={{ $json.mr }}"
+        },
+        {
+          "fieldId": "dib",
+          "fieldValue": "={{ $json.resumo?.dib }}"
+        },
+        {
+          "fieldId": "dcb",
+          "fieldValue": "={{ $json.resumo?.dcb }}"
+        },
+        {
+          "fieldId": "honorarios_start",
+          "fieldValue": "={{ $json.honorarios_start }}"
+        },
+        {
+          "fieldId": "saldo_final",
+          "fieldValue": "={{ $json.saldo_final }}"
+        },
+        {
+          "fieldId": "status_execucao",
+          "fieldValue": "={{ $json.total_erros > 0 ? 'ERRO' : 'SUCESSO' }}"
+        },
+        {
+          "fieldId": "ok",
+          "fieldValue": "={{ $json.total_erros === 0 }}"
+        },
+        {
+          "fieldId": "qtd_faturas_criadas",
+          "fieldValue": "={{ $json.total_criadas }}"
+        },
+        {
+          "fieldId": "qtd_faturas_erro",
+          "fieldValue": "={{ $json.total_erros }}"
+        },
+        {
+          "fieldId": "qtd_faturas_duplicadas",
+          "fieldValue": "={{ $json.total_puladas }}"
+        },
+        {
+          "fieldId": "ids_invoices",
+          "fieldValue": "={{ $json.ids_invoices }}"
+        },
+        {
+          "fieldId": "tags",
+          "fieldValue": "={{ $json.tags }}"
+        },
+        {
+          "fieldId": "alertas",
+          "fieldValue": "={{ $json.alertas_lista }}"
+        },
+        {
+          "fieldId": "parcelas",
+          "fieldValue": "={{ $json.itens_criados }}"
+        },
+        {
+          "fieldId": "resumo",
+          "fieldValue": "={{ $json.resumo }}"
+        },
+        {
+          "fieldId": "link_deal",
+          "fieldValue": "={{ $json.links?.deal }}"
+        },
+        {
+          "fieldId": "tem_darf",
+          "fieldValue": "={{ $json.tem_darf }}"
+        },
+        {
+          "fieldId": "tem_boleto",
+          "fieldValue": "={{ $json.tem_boleto }}"
+        },
+        {
+          "fieldId": "asaas_payment_id",
+          "fieldValue": "={{ $json.asaas?.payment_id }}"
+        },
+        {
+          "fieldId": "asaas_boleto_url",
+          "fieldValue": "={{ $json.asaas?.boleto_url }}"
+        },
+        {
+          "fieldId": "versao_workflow",
+          "fieldValue": "={{ 'V23' }}"
+        },
+        {
+          "fieldId": "execucao_id",
+          "fieldValue": "={{$json.supabase_execucao.execucao_id}}"
+        }
+      ]
+    }
+  },
+  "type": "n8n-nodes-base.supabase",
+  "typeVersion": 1,
+  "position": [
+    10432,
+    26272
+  ],
+  "id": "c2b911ef-5a54-43ea-acf5-d6a7d3d82ec0",
+  "name": "18C. Supabase faturista_execucoes",
+  "credentials": {
+    "supabaseApi": {
+      "id": "CTj6BAbxoTFRemDe",
+      "name": "Supabase account"
+    }
+  }
+}

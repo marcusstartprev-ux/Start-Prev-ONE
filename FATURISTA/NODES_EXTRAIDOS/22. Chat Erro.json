@@ -1,0 +1,29 @@
+{
+  "parameters": {
+    "method": "POST",
+    "url": "https://startprev.bitrix24.com.br/rest/110798/2itn6qbjhoj6y42x/im.message.add",
+    "sendBody": true,
+    "contentType": "form-urlencoded",
+    "bodyParameters": {
+      "parameters": [
+        {
+          "name": "DIALOG_ID",
+          "value": "={{ $json.DIALOG_ID }}"
+        },
+        {
+          "name": "MESSAGE",
+          "value": "={{ $json.MESSAGE }}"
+        }
+      ]
+    },
+    "options": {}
+  },
+  "id": "c16c880a-be30-4448-83c1-81e748a1c575",
+  "name": "22. Chat Erro",
+  "type": "n8n-nodes-base.httpRequest",
+  "typeVersion": 4.1,
+  "position": [
+    7744,
+    25600
+  ]
+}

@@ -1,0 +1,479 @@
+{
+  "parameters": {
+    "operation": "append",
+    "documentId": {
+      "__rl": true,
+      "mode": "id",
+      "value": "1qZmjKra2NyeygHVC-eyQtLeDzWgeX6ezukLzw8J9130"
+    },
+    "sheetName": {
+      "__rl": true,
+      "value": "MASTER",
+      "mode": "name"
+    },
+    "columns": {
+      "mappingMode": "autoMapInputData",
+      "value": {},
+      "matchingColumns": [],
+      "schema": [
+        {
+          "id": "timestamp",
+          "displayName": "timestamp",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "deal_id",
+          "displayName": "deal_id",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "cliente",
+          "displayName": "cliente",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "versao",
+          "displayName": "versao",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "tentativa",
+          "displayName": "tentativa",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "status",
+          "displayName": "status",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "severidade_max",
+          "displayName": "severidade_max",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "nb",
+          "displayName": "nb",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "nit",
+          "displayName": "nit",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "cpf",
+          "displayName": "cpf",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "dib",
+          "displayName": "dib",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "dip",
+          "displayName": "dip",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "dcb",
+          "displayName": "dcb",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "banco",
+          "displayName": "banco",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "data_pdf",
+          "displayName": "data_pdf",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "mr",
+          "displayName": "mr",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "aliquota_inss",
+          "displayName": "aliquota_inss",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "desconto_inss",
+          "displayName": "desconto_inss",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "liquido_mensal",
+          "displayName": "liquido_mensal",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "valor_diario",
+          "displayName": "valor_diario",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "total_beneficio",
+          "displayName": "total_beneficio",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "dias_recebidos",
+          "displayName": "dias_recebidos",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "dias_restantes",
+          "displayName": "dias_restantes",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "valor_total_start",
+          "displayName": "valor_total_start",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "percentual_start",
+          "displayName": "percentual_start",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "saldo_inicial",
+          "displayName": "saldo_inicial",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "saldo_final",
+          "displayName": "saldo_final",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "parcela",
+          "displayName": "parcela",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "competencia",
+          "displayName": "competencia",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "competencia_final",
+          "displayName": "competencia_final",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "periodo",
+          "displayName": "periodo",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "data_pagamento",
+          "displayName": "data_pagamento",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "valor_inss",
+          "displayName": "valor_inss",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "valor_start",
+          "displayName": "valor_start",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "valor_cliente",
+          "displayName": "valor_cliente",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "aliquota_aplicada",
+          "displayName": "aliquota_aplicada",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "regra_aplicada",
+          "displayName": "regra_aplicada",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "responsavel",
+          "displayName": "responsavel",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "is_retroativo",
+          "displayName": "is_retroativo",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "is_simulado",
+          "displayName": "is_simulado",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "tipo_alerta",
+          "displayName": "tipo_alerta",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "titulo_alerta",
+          "displayName": "titulo_alerta",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "mensagem_alerta",
+          "displayName": "mensagem_alerta",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        },
+        {
+          "id": "bloqueia",
+          "displayName": "bloqueia",
+          "required": false,
+          "defaultMatch": false,
+          "display": true,
+          "type": "string",
+          "canBeUsedToMatch": true,
+          "removed": false
+        }
+      ],
+      "attemptToConvertTypes": false,
+      "convertFieldsToString": false
+    },
+    "options": {}
+  },
+  "id": "383b700e-1792-4e72-938d-8d51ff8d3220",
+  "name": "20. Append MASTER",
+  "type": "n8n-nodes-base.googleSheets",
+  "typeVersion": 4.5,
+  "position": [
+    11104,
+    26272
+  ],
+  "credentials": {
+    "googleSheetsOAuth2Api": {
+      "id": "rzK4Kn2nRsBEj5v6",
+      "name": "Google Sheets account 3"
+    }
+  }
+}

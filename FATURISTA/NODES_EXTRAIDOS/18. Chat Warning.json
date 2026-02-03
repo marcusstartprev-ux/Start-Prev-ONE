@@ -1,0 +1,18 @@
+{
+  "parameters": {
+    "method": "POST",
+    "url": "https://startprev.bitrix24.com.br/rest/110798/2itn6qbjhoj6y42x/im.message.add",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={\n  \"DIALOG_ID\": \"chat282150\",\n  \"MESSAGE\": \"⚠️ [B]ALERTA DO PROCESSAMENTO[/B]\\n\\n📋 Deal: {{ $json.deal_id }}\\n🔗 https://startprev.bitrix24.com.br/crm/deal/details/{{ $json.deal_id }}/\\n\\n👤 Cliente: {{ $json.nome_cliente || 'N/A' }}\\n\\n💰 [B]Faturas Criadas:[/B]\\n{{ ($json.itens_criados || []).map(f => '• Parcela ' + f.parcela + ' | ' + f.competencia + '\\\\n  🔗 ' + f.link).join('\\\\n') || '— Nenhuma —' }}\\n\\n🚨 [B]Alertas:[/B]\\n{{ ($json.alertas_lista || []).map(a => '• ' + a.mensagem).join('\\\\n') || 'Sem alertas específicos.' }}\\n\\n👤 Responsável: [USER={{ $('8C. Definir Responsável').first().json.responsavel.id }}]{{ $('8C. Definir Responsável').first().json.responsavel.nome }}[/USER]\",\n  \"SYSTEM\": \"Y\"\n}",
+    "options": {}
+  },
+  "id": "39560580-63d6-4d05-9a80-f05162cc405c",
+  "name": "18. Chat Warning",
+  "type": "n8n-nodes-base.httpRequest",
+  "typeVersion": 4.1,
+  "position": [
+    9536,
+    25856
+  ]
+}

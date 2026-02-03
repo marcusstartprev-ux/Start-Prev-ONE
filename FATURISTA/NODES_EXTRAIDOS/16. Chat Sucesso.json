@@ -1,0 +1,29 @@
+{
+  "parameters": {
+    "method": "POST",
+    "url": "https://startprev.bitrix24.com.br/rest/110798/2itn6qbjhoj6y42x/im.message.add",
+    "sendBody": true,
+    "contentType": "form-urlencoded",
+    "bodyParameters": {
+      "parameters": [
+        {
+          "name": "DIALOG_ID",
+          "value": "chat282584"
+        },
+        {
+          "name": "MESSAGE",
+          "value": "==✅ [B]FATURAMENTO CONCLUÍDO COM SUCESSO[/B]\n\n📋 [B]Negócio:[/B] #{{ $json.deal_id }}\n🔗 https://startprev.bitrix24.com.br/crm/deal/details/{{ $json.deal_id }}/\n\n👤 [B]Cliente:[/B] {{ ($json.nome_cliente || 'N/A').replace(/[\"\\\\n]/g, ' ') }}\n📄 [B]CPF:[/B] {{ $json.cpf || 'N/A' }}\n🎫 [B]NB:[/B] {{ $json.nb || 'N/A' }}\n💰 [B]MR:[/B] {{ $json.mr_formatado || 'N/A' }}\n\n📊 [B]FATURAS CRIADAS: {{ $json.total_criadas || 0 }}[/B]\n\n{{ ($json.itens_criados || []).map(f => '━━━━━━━━━━━━━━━━━━━━\\\\n📌 [B]Parcela ' + f.parcela + '/' + (f.total_parcelas || $json.total_criadas) + ' - ' + (f.competencia || '') + '[/B]\\\\n💵 Valor INSS: R$ ' + Number(f.valor_inss || 0).toFixed(2).replace('.', ',') + '\\\\n💼 Valor Start: R$ ' + Number(f.valor_start || 0).toFixed(2).replace('.', ',') + (f.valor_darf_rateado > 0 ? ' + R$ ' + Number(f.valor_darf_rateado).toFixed(2).replace('.', ',') + ' DARF' : '') + '\\\\n👩 Valor Cliente: R$ ' + Number(f.valor_cliente || 0).toFixed(2).replace('.', ',') + '\\\\n🔗 Fatura: https://startprev.bitrix24.com.br/crm/type/31/details/' + (f.invoice_id || '') + '/\\\\n🎫 Boleto: ' + (f.boleto_url || f.asaas_boleto_url || 'Não gerado')).join('\\\\n\\\\n') }}\n\n{{ $json.tem_darf ? '━━━━━━━━━━━━━━━━━━━━\\\\n💳 [B]DARF (START IRÁ PAGAR)[/B]\\\\n💵 Valor Total: ' + ($json.darf?.valor_total_formatado || 'R$ 0,00') + '\\\\n📊 Rateado em: ' + ($json.darf?.qtd_parcelas || 0) + ' parcela(s)\\\\n💰 Valor/Parcela: ' + ($json.darf?.valor_por_parcela_formatado || 'R$ 0,00') + '\\\\n✅ Cliente reembolsa Start via faturas' : '' }}\n\n━━━━━━━━━━━━━━━━━━━━\n🟢 Processo concluído!"
+        }
+      ]
+    },
+    "options": {}
+  },
+  "id": "8455b99c-9a31-4d69-b65b-058cbc4f5a95",
+  "name": "16. Chat Sucesso",
+  "type": "n8n-nodes-base.httpRequest",
+  "typeVersion": 4.1,
+  "position": [
+    9088,
+    25936
+  ]
+}

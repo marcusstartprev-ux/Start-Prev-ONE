@@ -1,0 +1,17 @@
+{
+  "parameters": {
+    "httpMethod": "POST",
+    "path": "faturista-start-v15",
+    "responseMode": "lastNode",
+    "options": {}
+  },
+  "id": "7e3a88f5-6b57-4de0-8b97-938875fe1c01",
+  "name": "1. Webhook",
+  "type": "n8n-nodes-base.webhook",
+  "typeVersion": 1.1,
+  "position": [
+    3488,
+    26720
+  ],
+  "webhookId": "faturista-v15"
+}

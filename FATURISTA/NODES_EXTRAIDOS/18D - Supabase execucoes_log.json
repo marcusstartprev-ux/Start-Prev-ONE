@@ -1,0 +1,55 @@
+{
+  "parameters": {
+    "tableId": "logs",
+    "fieldsUi": {
+      "fieldValues": [
+        {
+          "fieldId": "execution_id",
+          "fieldValue": "={{ $json.deal_id }}_{{ Date.now() }}"
+        },
+        {
+          "fieldId": "deal_id",
+          "fieldValue": "={{ $json.deal_id }}"
+        },
+        {
+          "fieldId": "cpf",
+          "fieldValue": "={{ ($json.cpf || '').replace(/\\D/g, '') }}"
+        },
+        {
+          "fieldId": "nome_cliente",
+          "fieldValue": "={{ $json.nome_cliente }}"
+        },
+        {
+          "fieldId": "status",
+          "fieldValue": "={{ $json.total_erros > 0 ? 'ERRO' : 'SUCESSO' }}"
+        },
+        {
+          "fieldId": "ok",
+          "fieldValue": "={{ $json.total_erros === 0 }}"
+        },
+        {
+          "fieldId": "mensagem",
+          "fieldValue": "={{ $json.total_criadas + ' fatura(s) criada(s)' }}"
+        },
+        {
+          "fieldId": "versao",
+          "fieldValue": "V23"
+        }
+      ]
+    }
+  },
+  "type": "n8n-nodes-base.supabase",
+  "typeVersion": 1,
+  "position": [
+    10656,
+    26272
+  ],
+  "id": "2c8801d1-cf7b-4f25-8a71-72f0dcb14ad8",
+  "name": "18D - Supabase execucoes_log",
+  "credentials": {
+    "supabaseApi": {
+      "id": "CTj6BAbxoTFRemDe",
+      "name": "Supabase account"
+    }
+  }
+}

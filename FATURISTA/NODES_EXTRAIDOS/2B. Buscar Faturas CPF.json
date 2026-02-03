@@ -1,0 +1,21 @@
+{
+  "parameters": {
+    "method": "POST",
+    "url": "https://startprev.bitrix24.com.br/rest/110798/2itn6qbjhoj6y42x/crm.item.list",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={\n  \"entityTypeId\": 31,\n  \"filter\": {\n    \"=parentId2\": \"{{ $('1B. Inicializar').first().json.deal_id }}\"\n  },\n  \"select\": [\n    \"id\",\n    \"title\",\n    \"stageId\",\n    \"assignedById\",\n    \"parentId2\",\n    \"ufCrm_652439CFE551C\",\n    \"ufCrm_6790DAD756E3C\",\n    \"ufCrm_691B6450B46E3\",\n    \"ufCrm_652439D9202B3\",\n    \"ufCrm_652439D8D6B8E\",\n    \"ufCrm_652439D915311\",\n    \"ufCrm_652439D8B3207\",\n    \"ufCrm_652439D8E9608\",\n    \"ufCrm_652439D8CDB53\",\n    \"ufCrm_69442F27CCFB3\",\n    \"ufCrm_69442F5F762AD\"\n  ]\n}",
+    "options": {
+      "timeout": 30000
+    }
+  },
+  "id": "63bd6571-66c1-470d-b97e-651dbfed138c",
+  "name": "2B. Buscar Faturas CPF",
+  "type": "n8n-nodes-base.httpRequest",
+  "typeVersion": 4.1,
+  "position": [
+    4160,
+    26000
+  ],
+  "executeOnce": false
+}

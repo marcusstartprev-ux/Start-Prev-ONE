@@ -1,0 +1,18 @@
+{
+  "parameters": {
+    "method": "POST",
+    "url": "https://startprev.bitrix24.com.br/rest/110798/2itn6qbjhoj6y42x/crm.item.add",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ $json.body }}",
+    "options": {}
+  },
+  "type": "n8n-nodes-base.httpRequest",
+  "typeVersion": 4.3,
+  "position": [
+    8192,
+    26128
+  ],
+  "id": "3382e256-77a7-4937-be74-633f4af61b1e",
+  "name": "10. Criar Fatura"
+}

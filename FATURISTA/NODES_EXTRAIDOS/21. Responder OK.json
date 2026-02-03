@@ -1,0 +1,13 @@
+{
+  "parameters": {
+    "options": {}
+  },
+  "id": "ff424e4b-b20a-4948-8f45-af762698b67e",
+  "name": "21. Responder OK",
+  "type": "n8n-nodes-base.set",
+  "typeVersion": 3.2,
+  "position": [
+    11328,
+    26272
+  ]
+}

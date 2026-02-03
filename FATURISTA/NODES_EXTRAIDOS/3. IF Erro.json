@@ -1,0 +1,33 @@
+{
+  "parameters": {
+    "conditions": {
+      "options": {
+        "caseSensitive": true,
+        "leftValue": "",
+        "typeValidation": "strict",
+        "version": 1
+      },
+      "conditions": [
+        {
+          "id": "err",
+          "leftValue": "={{ $json.erro === true || $json.tem_faturas === true }}",
+          "rightValue": true,
+          "operator": {
+            "type": "boolean",
+            "operation": "equals"
+          }
+        }
+      ],
+      "combinator": "and"
+    },
+    "options": {}
+  },
+  "id": "c26f8f39-083b-496e-8bf7-6df73dc48665",
+  "name": "3. IF Erro",
+  "type": "n8n-nodes-base.if",
+  "typeVersion": 2,
+  "position": [
+    4832,
+    26000
+  ]
+}

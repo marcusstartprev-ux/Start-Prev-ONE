@@ -1,0 +1,488 @@
+{
+  "1. Webhook": {
+    "main": [
+      [
+        {
+          "node": "BUSCAR DEAL",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "2B. Buscar Faturas CPF": {
+    "main": [
+      [
+        {
+          "node": "2C. Analisar Faturas",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "2C. Analisar Faturas": {
+    "main": [
+      [
+        {
+          "node": "3. Buscar File ID",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "3. Buscar File ID": {
+    "main": [
+      [
+        {
+          "node": "3. IF Erro",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "3. IF Erro": {
+    "main": [
+      [
+        {
+          "node": "🔧 NÓ 21 - PREPARAR MSG ERRO (Code)",
+          "type": "main",
+          "index": 0
+        }
+      ],
+      [
+        {
+          "node": "3B. Obter URL Disk",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "3B. Obter URL Disk": {
+    "main": [
+      [
+        {
+          "node": "4. Baixar PDF",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "4. Baixar PDF": {
+    "main": [
+      [
+        {
+          "node": "5. Gemini Extrair2",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "5. Gemini Extrair2": {
+    "main": [
+      [
+        {
+          "node": "6A. Calculo do Historico de credito (PDF)",
+          "type": "main",
+          "index": 0
+        },
+        {
+          "node": "Merge 1",
+          "type": "main",
+          "index": 0
+        },
+        {
+          "node": "Merge1",
+          "type": "main",
+          "index": 6
+        }
+      ]
+    ]
+  },
+  "6B.Calculo do INSS": {
+    "main": [
+      [
+        {
+          "node": "6C. Calculo Start",
+          "type": "main",
+          "index": 0
+        },
+        {
+          "node": "Merge 1",
+          "type": "main",
+          "index": 2
+        }
+      ]
+    ]
+  },
+  "6D. Revisor de Calculos": {
+    "main": [
+      [
+        {
+          "node": "7. IF ERRO",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "6A. Calculo do Historico de credito (PDF)": {
+    "main": [
+      [
+        {
+          "node": "6B.Calculo do INSS",
+          "type": "main",
+          "index": 0
+        },
+        {
+          "node": "Merge 1",
+          "type": "main",
+          "index": 1
+        }
+      ]
+    ]
+  },
+  "6C. Calculo Start": {
+    "main": [
+      [
+        {
+          "node": "Merge 1",
+          "type": "main",
+          "index": 3
+        }
+      ]
+    ]
+  },
+  "9. Preparar Fatura": {
+    "main": [
+      [
+        {
+          "node": "12. Gerar Relatório HTML",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "10. Criar Fatura": {
+    "main": [
+      [
+        {
+          "node": "13A. IF Pular",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "14. Processar Resposta Fatura": {
+    "main": [
+      [
+        {
+          "node": "15. Montar itens_criados",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "16. Chat Sucesso": {
+    "main": [
+      [
+        {
+          "node": "17 IF Warning",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "17 IF Warning": {
+    "main": [
+      [
+        {
+          "node": "18. Chat Warning",
+          "type": "main",
+          "index": 0
+        }
+      ],
+      [
+        {
+          "node": "Merge",
+          "type": "main",
+          "index": 1
+        }
+      ]
+    ]
+  },
+  "18. Chat Warning": {
+    "main": [
+      [
+        {
+          "node": "Merge",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "22. Chat Erro": {
+    "main": [
+      [
+        {
+          "node": "23. Responder ERRO",
+          "type": "main",
+          "index": 0
+        },
+        {
+          "node": "Merge1",
+          "type": "main",
+          "index": 3
+        }
+      ]
+    ]
+  },
+  "12. Gerar Relatório HTML": {
+    "main": [
+      [
+        {
+          "node": "10. Criar Fatura",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "13A. IF Pular": {
+    "main": [
+      [
+        {
+          "node": "26. Responder SKIP",
+          "type": "main",
+          "index": 0
+        },
+        {
+          "node": "Merge1",
+          "type": "main",
+          "index": 1
+        }
+      ],
+      [
+        {
+          "node": "14. Processar Resposta Fatura",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "8B. Buscar Última Invoice": {
+    "main": [
+      [
+        {
+          "node": "8C. Definir Responsável",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "8C. Definir Responsável": {
+    "main": [
+      [
+        {
+          "node": "Merge 2",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "7. IF ERRO": {
+    "main": [
+      [
+        {
+          "node": "8B. Buscar Última Invoice",
+          "type": "main",
+          "index": 0
+        }
+      ],
+      [
+        {
+          "node": "21b preparar msg erro",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "🔧 NÓ 21 - PREPARAR MSG ERRO (Code)": {
+    "main": [
+      [
+        {
+          "node": "22. Chat Erro",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "21b preparar msg erro": {
+    "main": [
+      [
+        {
+          "node": "22. Chat Erro",
+          "type": "main",
+          "index": 0
+        },
+        {
+          "node": "Merge1",
+          "type": "main",
+          "index": 4
+        }
+      ]
+    ]
+  },
+  "Merge 2": {
+    "main": [
+      [
+        {
+          "node": "9. Preparar Fatura",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "Merge 1": {
+    "main": [
+      [
+        {
+          "node": "6D. Revisor de Calculos",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "BUSCAR DEAL": {
+    "main": [
+      [
+        {
+          "node": "Merge1",
+          "type": "main",
+          "index": 5
+        },
+        {
+          "node": "1B. Inicializar",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "18B.Gravar Supabase": {
+    "main": [
+      [
+        {
+          "node": "18C. Supabase faturista_execucoes",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "Merge": {
+    "main": [
+      [
+        {
+          "node": "Merge1",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "19. Preparar Sheets": {
+    "main": [
+      [
+        {
+          "node": "20. Append MASTER",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "20. Append MASTER": {
+    "main": [
+      [
+        {
+          "node": "21. Responder OK",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "18C. Supabase faturista_execucoes": {
+    "main": [
+      [
+        {
+          "node": "18D - Supabase execucoes_log",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "18D - Supabase execucoes_log": {
+    "main": [
+      [
+        {
+          "node": "19. Preparar Sheets",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "Merge1": {
+    "main": [
+      [
+        {
+          "node": "18B.Gravar Supabase",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "15. Montar itens_criados": {
+    "main": [
+      [
+        {
+          "node": "16. Chat Sucesso",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  },
+  "1B. Inicializar": {
+    "main": [
+      [
+        {
+          "node": "2B. Buscar Faturas CPF",
+          "type": "main",
+          "index": 0
+        }
+      ]
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "parameters": {
+    "jsCode": "// ═══════════════════════════════════════════════════════════════════════════════\n// NÓ 8C - DEFINIR RESPONSÁVEL (V3 - DETERMINÍSTICO POR CPF)\n// ═══════════════════════════════════════════════════════════════════════════════\n// FUNÇÃO: Define responsável para as faturas baseado no CPF do cliente\n// ENTRADA: Output do 8B (não usado) + dados do 6D\n// SAÍDA: Dados do 6D + responsável definido\n// ═══════════════════════════════════════════════════════════════════════════════\n// \n// CHANGELOG V3.0:\n// ✅ NOVO: Alternância determinística por último dígito do CPF\n// ✅ REMOVIDO: Dependência de busca de outras invoices\n// ✅ VANTAGEM: Mesmo cliente = sempre mesmo responsável\n// ✅ VANTAGEM: Sem race condition, sem falhas de API\n// ✅ DISTRIBUIÇÃO: 50/50 (dígitos 0-4 = Beatriz, 5-9 = Larissa)\n// \n// CHANGELOG V2:\n// - Buscava última invoice de outro CPF (removido - instável)\n// \n// ═══════════════════════════════════════════════════════════════════════════════\n\n// ═══ CONFIGURAÇÃO DOS RESPONSÁVEIS ═══\nconst RESPONSAVEIS = {\n  BEATRIZ: {\n    id: 178122,\n    nome: 'Beatriz Farias'\n  },\n  LARISSA: {\n    id: 197562,\n    nome: 'Larissa Aparecida'\n  }\n};\n\n// ═══ BUSCAR DADOS DO 6D ═══\nconst dados6D = $('6D. Revisor de Calculos').first()?.json || {};\n\n// ═══ EXTRAIR CPF ═══\nconst cpfAtual = (dados6D.resumo?.cpf || '').replace(/\\D/g, '');\n\n// ═══ DEFINIR RESPONSÁVEL POR CPF (DETERMINÍSTICO) ═══\n// Último dígito do CPF define o responsável\n// 0,1,2,3,4 → Beatriz (50%)\n// 5,6,7,8,9 → Larissa (50%)\nconst ultimoDigito = parseInt(cpfAtual.slice(-1)) || 0;\nconst responsavelEscolhido = (ultimoDigito < 5) \n  ? RESPONSAVEIS.BEATRIZ \n  : RESPONSAVEIS.LARISSA;\n\n// ═══ ATUALIZAR FATURAS COM RESPONSÁVEL ═══\nconst faturasCriar = (dados6D.faturas_criar || []).map(f => ({\n  ...f,\n  responsavel_id: responsavelEscolhido.id,\n  responsavel_nome: responsavelEscolhido.nome\n}));\n\n// ═══ RETORNO ═══\nreturn {\n  // Tudo do 6D\n  ...dados6D,\n  \n  // Faturas atualizadas com responsável\n  faturas_criar: faturasCriar,\n  \n  // Responsável definido\n  responsavel: {\n    id: responsavelEscolhido.id,\n    nome: responsavelEscolhido.nome\n  },\n  \n  // Debug\n  _debug_responsavel: {\n    versao: 'V3.0',\n    metodo: 'DETERMINISTICO_CPF',\n    cpf_atual: cpfAtual,\n    ultimo_digito: ultimoDigito,\n    regra: ultimoDigito < 5 ? '0-4 → Beatriz' : '5-9 → Larissa',\n    responsavel_escolhido: responsavelEscolhido.nome,\n    responsavel_id: responsavelEscolhido.id\n  }\n};"
+  },
+  "type": "n8n-nodes-base.code",
+  "typeVersion": 2,
+  "position": [
+    7296,
+    25840
+  ],
+  "id": "c461edeb-0416-4929-85e1-acd2262f0411",
+  "name": "8C. Definir Responsável"
+}

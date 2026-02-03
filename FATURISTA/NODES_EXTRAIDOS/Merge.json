@@ -1,0 +1,11 @@
+{
+  "parameters": {},
+  "type": "n8n-nodes-base.merge",
+  "typeVersion": 3.2,
+  "position": [
+    9760,
+    25936
+  ],
+  "id": "a6bf4e59-badb-4ab1-81cb-c14183e21099",
+  "name": "Merge"
+}
