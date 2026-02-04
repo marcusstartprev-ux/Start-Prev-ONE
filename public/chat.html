@@ -63,7 +63,9 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 28px; font-weight: 800; color: var(--white); letter-spacing: -1px;
     box-shadow: 0 8px 32px var(--royal-glow);
+    overflow: hidden;
   }
+  .welcome-logo-inner img { width: 100%; height: 100%; object-fit: cover; }
   .welcome-title { margin-top: 28px; color: var(--white); font-size: 22px; font-weight: 700; opacity: 0; animation: wFade 0.6s ease 0.3s forwards; }
   .welcome-title span { color: var(--yellow); }
   .welcome-sub { margin-top: 8px; color: var(--gray-400); font-size: 13px; opacity: 0; animation: wFade 0.6s ease 0.5s forwards; }
@@ -84,7 +86,9 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 13px; font-weight: 800; color: var(--white);
     box-shadow: 0 2px 12px var(--royal-glow);
+    overflow: hidden;
   }
+  .header-avatar img { width: 100%; height: 100%; object-fit: cover; }
   .header-avatar::after {
     content: ''; position: absolute; bottom: -1px; right: -1px;
     width: 12px; height: 12px; border-radius: 50%; background: #22c55e;
@@ -120,7 +124,9 @@
     display: flex; align-items: center; justify-content: center;
     color: var(--white); font-size: 9px; font-weight: 700; flex-shrink: 0;
     margin-bottom: 2px;
+    overflow: hidden;
   }
+  .msg-avatar img { width: 100%; height: 100%; object-fit: cover; }
   .msg-group-content { display: flex; flex-direction: column; gap: 3px; max-width: 84%; }
   .msg-author-line { font-size: 11px; color: var(--royal-light); margin-left: 4px; margin-bottom: 1px; font-weight: 600; opacity: 0.7; }
 
@@ -341,7 +347,7 @@
 <div class="chat-wrapper">
   <!-- WELCOME -->
   <div class="welcome-screen" id="welcomeScreen">
-    <div class="welcome-logo-ring"><div class="welcome-logo-inner">SP</div></div>
+    <div class="welcome-logo-ring"><div class="welcome-logo-inner" id="welcomeLogo">SP</div></div>
     <div class="welcome-title">Start<span>Prev</span></div>
     <div class="welcome-sub">Preparando seu atendimento...</div>
     <div class="welcome-loader"><span></span><span></span><span></span></div>
@@ -349,7 +355,7 @@
 
   <!-- HEADER -->
   <header class="chat-header">
-    <div class="header-avatar">SP</div>
+    <div class="header-avatar" id="headerAvatar">SP</div>
     <div class="header-info">
       <div class="header-nome" id="headerNome">Marcus — Start Prev</div>
       <div class="header-sub">Online agora</div>
@@ -417,6 +423,12 @@ const U = new URLSearchParams(location.search);
 const P = {};
 ['nome','celular','perfil','situacao','filhos','diagnostico','nascimento','seguro_desemprego','apos_demissao','canal','classificacao','origem'].forEach(k => P[k]=U.get(k)||'');
 if(!P.nome){P.nome='Sandrieli Kotkoski';P.celular='(47)99699-9018';P.perfil='Sou Mãe. Mas não estou Gestante.';P.situacao='Sou Trabalhadora RURAL';P.filhos='Sim';P.diagnostico='Não tem';P.seguro_desemprego='Não';P.apos_demissao='Em menos de 1 ano';P.classificacao='RURALQ';P.origem='googleads3';}
+
+// === LOGO DINÂMICO BASEADO NA ORIGEM ===
+const origemLower = (P.origem || '').toLowerCase().replace(/\s+/g, '');
+const isMaeSocial = origemLower.includes('maesocial') || origemLower.includes('mãesocial') || origemLower.includes('mae social');
+const LOGO_PARCEIRO = isMaeSocial ? '/logo-maesocial.jpg' : '/logo-start.png';
+const LOGO_GRUPO = '/logo-start.png';
 
 const fmt=t=>t?t.replace(/\*(.*?)\*/g,'<strong>$1</strong>').replace(/\n/g,'<br/>'):'';
 const hr=()=>{const n=new Date();return n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');};
@@ -486,7 +498,7 @@ function renderMsg(m){
   const g=document.createElement('div');
   g.className='msg-group '+(isC?'msg-group-right':'msg-group-left');
   let h='';
-  if(!isC) h+='<div class="msg-avatar">SP</div>';
+  if(!isC) h+=`<div class="msg-avatar"><img src="${LOGO_PARCEIRO}" alt="Logo"/></div>`;
   h+='<div class="msg-group-content">';
   if(!isC&&msgs.filter(x=>x.remetente==='equipe').length<=1) h+='<div class="msg-author-line">Marcus · Start Prev</div>';
   const bc=isC?'bubble-cliente':'bubble-equipe';
@@ -513,7 +525,7 @@ function renderMsg(m){
   g.innerHTML=h;c.appendChild(g);
 }
 
-function showTyp(){const c=document.getElementById('chatMessages');const d=document.createElement('div');d.className='typing-wrap';d.id='typInd';d.innerHTML='<div class="msg-avatar">SP</div><div class="typing-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>';c.appendChild(d);scr();}
+function showTyp(){const c=document.getElementById('chatMessages');const d=document.createElement('div');d.className='typing-wrap';d.id='typInd';d.innerHTML=`<div class="msg-avatar"><img src="${LOGO_PARCEIRO}" alt="Logo"/></div><div class="typing-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;c.appendChild(d);scr();}
 function hideTyp(){const e=document.getElementById('typInd');if(e)e.remove();}
 function autoReply(t,d){showTyp();setTimeout(()=>{hideTyp();addMsg('texto','equipe',{texto:t});},d||2000);}
 
@@ -606,6 +618,12 @@ function fecharFull(){document.getElementById('fullscreenOverlay').classList.add
 
 // === INIT ===
 window.addEventListener('DOMContentLoaded',()=>{
+  // Configurar logos dinâmicos
+  const welcomeLogo = document.getElementById('welcomeLogo');
+  const headerAvatar = document.getElementById('headerAvatar');
+  if(welcomeLogo) welcomeLogo.innerHTML = `<img src="${LOGO_PARCEIRO}" alt="Logo"/>`;
+  if(headerAvatar) headerAvatar.innerHTML = `<img src="${LOGO_PARCEIRO}" alt="Logo"/>`;
+
   setTimeout(()=>document.getElementById('welcomeScreen').classList.add('hide'),2200);
 
   setTimeout(()=>{
