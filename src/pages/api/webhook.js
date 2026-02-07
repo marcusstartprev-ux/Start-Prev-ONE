@@ -1,5 +1,5 @@
-// URL do N8N - TESTE (para produção, trocar para /webhook/ sem -test)
-const N8N_WEBHOOK_URL = 'https://startprev.app.n8n.cloud/webhook-test/form-startprev';
+// URL do N8N - PRODUÇÃO
+const N8N_WEBHOOK_URL = 'https://startprev.app.n8n.cloud/webhook/form-startprev';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
